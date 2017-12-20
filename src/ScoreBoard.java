@@ -22,7 +22,10 @@ public class ScoreBoard implements ActionListener {
 
 	JPanel titlePanel, scorePanel, buttonPanel;
 	JLabel homeLabel, visitorLabel, homeScore, visitorScore;
-	JButton homeButton, visitorButton, resetButton;
+	
+	JButton resetButton;
+	JButton addOneHome, addTwoHome, addThreeHome, addSixHome, minusOneHome;
+	JButton addOneVisitor, addTwoVisitor, addThreeVisitor, addSixVisitor, minusOneVisitor;
 
 	public Container createContentPane() {
 		
@@ -80,11 +83,30 @@ public class ScoreBoard implements ActionListener {
 		buttonPanel.setSize(330, 100);
 		totalGUI.add(buttonPanel);
 		
-		homeButton = new JButton("home Score +1");
-		homeButton.setLocation(0, 0);
-		homeButton.setSize(160, 30);
-		homeButton.addActionListener(this); //FIRST TIME!  YEAH!!
-		buttonPanel.add(homeButton);
+		addOneHome = new JButton("+1");
+		addOneHome.setLocation(0, 0);
+		addOneHome.setSize(160, 30);
+		addOneHome.addActionListener(this); //FIRST TIME!  YEAH!!
+		buttonPanel.add(addOneHome);
+		
+		addTwoHome = new JButton("+2");
+		addTwoHome.setLocation(0, 35);
+		addTwoHome.setSize(160, 30);
+		addTwoHome.addActionListener(this); 
+		buttonPanel.add(addTwoHome);
+		
+		addOneVisitor = new JButton("+1");
+		addOneVisitor.setLocation(170, 0);
+		addOneVisitor.setSize(160, 30);
+		addOneVisitor.addActionListener(this);
+		buttonPanel.add(addOneVisitor);
+		
+		
+		resetButton = new JButton("Start New Game");
+		resetButton.setLocation(0, 70);
+		resetButton.setSize(330, 30);
+		resetButton.addActionListener(this);
+		buttonPanel.add(resetButton);
 		
 		return totalGUI;
 	}
@@ -92,8 +114,22 @@ public class ScoreBoard implements ActionListener {
 	
 	//this method came to us from the interface ActionListener
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == addOneHome) {
+			homeScoreAmount = homeScoreAmount + 1;
+			homeScore.setText("" + homeScoreAmount);
+		} else if (e.getSource() == addTwoHome) {
+			homeScoreAmount = homeScoreAmount + 2;
+			homeScore.setText("" + homeScoreAmount);
+		} else if (e.getSource() == addOneVisitor) {
+			visitorScoreAmount = visitorScoreAmount + 1;
+			visitorScore.setText("" + visitorScoreAmount);
+		} else if (e.getSource() == resetButton) {
+			homeScoreAmount = 0;
+			visitorScoreAmount = 0;
+			homeScore.setText("" + homeScoreAmount);
+			visitorScore.setText("" + visitorScoreAmount);
+		}
 		
 	}
 
